@@ -1,0 +1,11 @@
+@use 'sass:map';
+@use '../utilities/maps' as mapa;
+@use '../utilities/variables';
+
+%marginH {
+    margin: 10px 10px;
+}
+
+%paddingH {
+    padding: 5px 0;
+}

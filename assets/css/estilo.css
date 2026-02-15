@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+/* RESET CSS*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* GENERALES */
+/* imagenes */
+/* GENERALES */
+h1, h2, h5 {
+  margin: 10px 10px;
+}
+
+h1, h2, h5 {
+  padding: 5px 0;
+}
+
+body {
+  background-color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  border-bottom: 1px solid rgba(69, 69, 69, 0.195);
+}
+
+h3 {
+  margin: 10px 0;
+}
+
+/* FIN GENERALES */
+.Error {
+  color: red;
+  display: inline;
+}
+
+.Oculto {
+  display: none;
+}
+
+/*# sourceMappingURL=estilo.css.map */
