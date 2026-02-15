@@ -43,8 +43,9 @@ function RenderRenderFinalizar(IdCombo){
     const ToppingsSeleccionadas = document.querySelectorAll(".Check-Toppings:checked")
 
     const card = document.createElement("div")
-    card.innerHTML = `<button id="Confirmar" class="m-2 CombosClase">Realizar pedido</button>`
+    card.innerHTML = `<button id="Confirmar" class="m-2 CombosClase btn btn-secondary">Agregar combo</button>`
     ConfirmarSeleccion.appendChild(card)
+    AgregarCombo()
 }
 function RenderSeleccionToppings(IdCombo,OpcionesToppings){
     const borrar = document.getElementById("Btn-ContinuarAtoppings")
@@ -55,6 +56,7 @@ function RenderSeleccionToppings(IdCombo,OpcionesToppings){
     
     const MenuSeleccionTopping = document.getElementById("Toppings-seleccion")
     MenuSeleccionTopping.innerHTML =""//borro el contenedor por si vuelve a tocar  nuevo pedido
+    MenuSeleccionTopping.className ="d-flex flex-column"
     MenuSeleccionTopping.innerHTML = "<p>Precio por cada uno : $600</p>"
     for (const Topping of OpcionesToppings) {
         const card = document.createElement("div")
@@ -74,7 +76,7 @@ function RenderSeleccionToppings(IdCombo,OpcionesToppings){
     }
     // boton continuar a finalizar pedido
     const card = document.createElement("div")   
-    card.innerHTML = `<button id="Btn-ContinuarAFinalizar" class="m-2 CombosClase">Continuar</button>`
+    card.innerHTML = `<button id="Btn-ContinuarAFinalizar" class="m-2 CombosClase btn btn-secondary">Continuar</button>`
     
     MenuSeleccionTopping.appendChild(card) 
     const boton = document.getElementById("Btn-ContinuarAFinalizar")
@@ -88,7 +90,7 @@ function RenderSeleccionToppings(IdCombo,OpcionesToppings){
             //este if pregunta si existe el boton continuar a finalizar, xq lo borra cuando detecta al continuar para finalizar
             if(!document.getElementById("Btn-ContinuarAFinalizar")){
                 const card = document.createElement("div")   
-                card.innerHTML = `<button id="Btn-ContinuarAFinalizar" class="m-2 CombosClase">Continuar</button>`
+                card.innerHTML = `<button id="Btn-ContinuarAFinalizar" class="m-2 CombosClase btn btn-secondary">Continuar</button>`
                 MenuSeleccionTopping.appendChild(card)      
                 const boton = document.getElementById("Btn-ContinuarAFinalizar")
                 boton.onclick = () => {
@@ -103,6 +105,7 @@ function RenderSeleccionVerdura(IdCombo,OpcionesVerduras){
     const MenuSeleccionVerdura = document.getElementById("Verduras-seleccion")
     MenuSeleccionVerdura.innerHTML =""//borro el contenedor por si vuelve a tocar  nuevo pedido
     MenuSeleccionVerdura.innerHTML ="<p>Puede agregar hasta un maximo de 3 verduras.Precio por cada uno: $1000</p>"
+    MenuSeleccionVerdura.className = "d-flex flex-column"
     const MensajeError = document.createElement("span")
     MensajeError.textContent = "No se puede elegir mas de 3 verduras"
     MensajeError.className = "Mensaje-Error Oculto"
@@ -134,7 +137,7 @@ function RenderSeleccionVerdura(IdCombo,OpcionesVerduras){
             //este if pregunta si existe el boton continuar a toppings, xq lo borra cuando detecta al continuar para toppings
             if(!document.getElementById("Btn-ContinuarAtoppings")){
                 const card = document.createElement("div")   
-                card.innerHTML = `<button id="Btn-ContinuarAtoppings" class="m-2 CombosClase">Continuar</button>`
+                card.innerHTML = `<button id="Btn-ContinuarAtoppings" class="m-2 CombosClase btn btn-secondary">Continuar</button>`
                 MenuSeleccionVerdura.appendChild(card)      
                 const boton = document.getElementById("Btn-ContinuarAtoppings")
                 boton.onclick = () => {
@@ -163,7 +166,7 @@ function RenderSeleccionVerdura(IdCombo,OpcionesVerduras){
     
     
     const card = document.createElement("div")   
-    card.innerHTML = `<button id="Btn-ContinuarAtoppings" class="m-2 CombosClase">Continuar</button>`
+    card.innerHTML = `<button id="Btn-ContinuarAtoppings" class="m-2 CombosClase btn btn-secondary">Continuar</button>`
     MenuSeleccionVerdura.appendChild(card) 
     
     const boton = document.getElementById("Btn-ContinuarAtoppings")
@@ -175,11 +178,38 @@ function RenderSeleccionVerdura(IdCombo,OpcionesVerduras){
 function RenderSeleccionCombo(CombosArmados) {
     const MenuSeleccion = document.getElementById("Menu-seleccion")
     MenuSeleccion.innerHTML =""// borro el contenedor por si vuelve a tocar  nuevo pedido
-    MenuSeleccion.innerHTML = "<p>Seleccione el combo</p>"
+    MenuSeleccion.className = "d-flex flex-column"
+    MenuSeleccion.innerHTML = "<p class='d-flex flex-column'>Seleccione el combo</p><div class='d-flex flex-column' id='ContenedorBurger'></div>"
+    const Burgercontenedor = document.getElementById("ContenedorBurger")
     for (const Combo of CombosArmados) {
         const card = document.createElement("div")
-        card.innerHTML = `<button id="${Combo.id}" class="m-2 CombosClase">${Combo.nombre} </button>`
-        MenuSeleccion.appendChild(card)
+        card.innerHTML = `<button id="${Combo.id}" class="m-2 CombosClase btn btn-success">${Combo.nombre} </button>`
+        card.className = "d-flex flex-row justify-content-between align-items-center m-2"
+        
+        const img = document.createElement("img")
+        switch (Combo.nombre) {
+                case "CheeseBurger":
+                    img.src = "./assets/img/cheese-burger.webp"
+                    img.alt = Combo.nombre
+                    break
+                case "BlueBurger":
+                    img.src = "./assets/img/blue-burger.webp"
+                    img.alt = Combo.nombre
+                    break                   
+                case "VeganBurger":
+                    img.src = "./assets/img/vegan-burger.webp"
+                    img.alt = Combo.nombre
+                    break
+                case "BaconBurger":
+                    img.src = "./assets/img/bacon-burger.webp"
+                    img.alt = Combo.nombre
+                    break        
+                default:
+            }
+
+        img.className = "img-combo"
+        card.appendChild(img)
+        Burgercontenedor.appendChild(card)
     }
         const Botones = document.querySelectorAll(".CombosClase")
         Botones.forEach ( (boton) => {
@@ -214,13 +244,13 @@ function RenderMenu(MenuArray, CombosArmados) {
         const card = document.createElement("div")
         switch (OpcionElegida) {
             case 1:
-                card.innerHTML = `<button id="${OpcionElegida}" class="m-2">Nuevo Pedido</button>`
+                card.innerHTML = `<button id="${OpcionElegida}" class="m-2 btn btn-dark">Nuevo Pedido</button>`
                 break
             case 2:
-                card.innerHTML = `<button id="${OpcionElegida}" class="m-2">Ver Pedido</button>`
+                card.innerHTML = `<button id="${OpcionElegida}" class="m-2 btn btn-dark">Ver Pedido</button>`
                 break
             case 3:
-                card.innerHTML = `<button id="${OpcionElegida}" class="m-2">Salir</button>`
+                card.innerHTML = `<button id="${OpcionElegida}" class="m-2 btn btn-dark ">Salir</button>`
                 break
             default: alert("Revisar codigo porque el menu esta hardcodeado, en este momento es un array con valores 1,2,3")
         }

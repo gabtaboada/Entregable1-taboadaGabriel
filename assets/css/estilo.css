@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 /* RESET CSS*/
 * {
@@ -38,6 +39,20 @@ h3 {
 
 .Oculto {
   display: none;
+}
+
+.img-combo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover; /* evita que se deforme */
+  border-radius: 15px; /* bordes redondeados */
+  border: 3px solid #8B4513; /* marrón tipo burger */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.img-combo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
 }
 
 /*# sourceMappingURL=estilo.css.map */
